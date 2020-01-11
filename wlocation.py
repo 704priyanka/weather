@@ -16,7 +16,7 @@ def location():
     temperature = round(temperature,1)
     icon = req['weather'][0]['icon']
     icon = 'https://openweathermap.org/img/w/'+ icon +'.png'
-    return render_template('location.html', city = city, description = description, temperature = temperature, icon = icon)
+    return render_template('index.html', city = city, description = description, temperature = temperature, icon = icon)
 
 if __name__ == '__main__':
     app.run()
