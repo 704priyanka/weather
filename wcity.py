@@ -5,20 +5,20 @@ app = Flask(__name__)
 app.debug = True
 
 @app.route('/')
-def index():
+def city():
         if request.method == 'GET':
-                index = request.args.get('index')
-        if index == None or index == '':
-                index = 'Mumbai'
+                index = request.args.get('city')
+        if city == None or city == '':
+                city= 'Mumbai'
 
-        req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+ index +'&units=metric&appid=271d1234d3f497eed5b1d80a07b3fcd1').json()
+        req = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+ city +'&units=metric&appid=271d1234d3f497eed5b1d80a07b3fcd1').json()
         print(req)
 
         description = req['weather'][0]['description'].upper()
         temperature = req['main']['temp']
         icon = req['weather'][0]['icon']
-        icon = 'https://openweathermap.org/img/w/'+ icon +'.png'
+        icon = 'https://openweathermap.org/img/w/'+ icon +'.jpg'
 
-        return render_template('index.html', index = index, description = description, temperature = temperature, icon = icon)
+        return render_template('index.html', city = city, description = description, temperature = temperature, icon = icon)
 if __name__ == '__main__':
    app.run()
